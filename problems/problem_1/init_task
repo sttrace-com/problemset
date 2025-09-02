@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Setting up directory"
-touch /home/ubuntu/test.txt

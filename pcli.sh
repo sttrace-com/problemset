@@ -30,13 +30,21 @@ init(){
 }
 
 synth(){
+
     local problem=$1
+    [ -z "${problem}" ] && echo "missing problem" && exit 1
+
     local synth_dir="./synth/${problem}"
     local problem_dir="./problems/${problem}"
 
-    [ -z "${problem}" ] && echo "missing problem" && exit 1
     [ ! -d "${problem_dir}" ] && { echo "${problem} does not exit, create one with init command first" && exit 1; }
     [ ! -d "./synth" ] && mkdir synth
+    
+    local data_file="${problem_dir}/data.json"
+    local runner=$(jq -r .runner_type < "${data_file}")
+    local base_image=$(jq -r .base_image < "${data_file}")
+    local image_name="${base_image%%:*}"
+    local component_dir="./template/runners/${runner}/${image_name}"
     
     # Cleanup old synthed dir
     [  -d "${synth_dir}" ] && rm -rf "${synth_dir}"
@@ -45,7 +53,7 @@ synth(){
 
     cp -r "${problem_dir}"/* "${synth_dir}"
     
-    cp "./template/setup.sh" "${synth_dir}"
+    cp "${component_dir}/setup.sh" "${synth_dir}"
 
     python3 - <<EOF
 import json
@@ -54,10 +62,12 @@ from jinja2 import Template
 
 problem_dir = "${problem_dir}"
 synth_dir = "${synth_dir}"
+component_dir = "${component_dir}"
 
-template = Template(Path("./template/Dockerfile").read_text())
 
 with open(Path(f"./{problem_dir}/data.json"), "r") as f: data = json.load(f)
+
+template = Template(Path(f"{component_dir}/Dockerfile").read_text())
 
 rendered = template.render(base_image=data.get("base_image", "ubuntu:22.04"), external_packages=data.get("external_packages", []))
 
