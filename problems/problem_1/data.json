@@ -1,0 +1,8 @@
+{
+	"title": "",
+	"difficulty": 1,
+	"hints": [],
+	"labels": [],
+	"external_packages": [],
+	"base_image": "ubuntu:22.04"
+}
