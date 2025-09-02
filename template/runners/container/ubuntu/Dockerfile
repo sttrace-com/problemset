@@ -16,7 +16,7 @@ RUN apt-get update && \
     mkdir /var/run/sshd && \
     ssh-keygen -A
 
-
+# Dummy password which can be overriden in setup.sh by env vars when starting new container
 RUN useradd -ms /bin/bash admin && \
     echo 'admin:ubuntu' | chpasswd && \
     usermod -aG sudo admin && \

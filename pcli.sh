@@ -37,7 +37,7 @@ synth(){
     local synth_dir="./synth/${problem}"
     local problem_dir="./problems/${problem}"
 
-    [ ! -d "${problem_dir}" ] && { echo "${problem} does not exit, create one with init command first" && exit 1; }
+    [ ! -d "${problem_dir}" ] && { echo "${problem} does not exist, create one with init command first" && exit 1; }
     [ ! -d "./synth" ] && mkdir synth
     
     local data_file="${problem_dir}/data.json"
@@ -69,7 +69,7 @@ with open(Path(f"./{problem_dir}/data.json"), "r") as f: data = json.load(f)
 
 template = Template(Path(f"{component_dir}/Dockerfile").read_text())
 
-rendered = template.render(base_image=data.get("base_image", "ubuntu:22.04"), external_packages=data.get("external_packages", []))
+rendered = template.render(base_image=data["base_image"], external_packages=data["external_packages"])
 
 (Path(f"./{synth_dir}") / "Dockerfile").write_text(rendered)
 
@@ -78,12 +78,67 @@ EOF
 }
 
 build(){
-    echo "Building stuff"
+
+    local problem="${1}"
+    local synth_dir="./synth/${problem}"
+    local problem_dir="./problems/${problem}"
+
+    [ -z "${problem}" ] && echo "Problem name argument cannot be blank" && exit 1
+    [ ! -d "${problem_dir}" ] && { echo "${problem} does not exist, create one with init command first" && exit 1; }
+    [ ! -d "${synth_dir}" ] && { echo "${problem} does not exist, create one with synth command first" && exit 1; }
+
+    pushd "${synth_dir}"
+        echo "Building docker image"
+        docker build -t "$problem" .
+    popd
 }
 
-# Script starts here
+run(){
+    local problem="${1}"
+    local synth_dir="./synth/${problem}"
+    
+    [ -z "${problem}" ] && echo "Problem name argument cannot be blank" && exit 1
+    [ ! -d "${synth_dir}" ] && { echo "${problem} does not exist, create one with synth command first" && exit 1; }
+
+    pushd "${synth_dir}"
+        echo "Starting ${problem}:latest"
+        docker run -d -p 22:22 --name "${problem}_${RANDOM}" "${problem}"
+    popd
+}
+
+check(){
+    if ! which jq > /dev/null; then
+        echo "jq is not installed" && exit 1
+    fi
+}
+
+
+usage(){
+    cat <<EOF
+Usage: $(basename "$0") <command> [args]
+
+Commands:
+  init                  Initialize a new problem directory from template
+  synth <problem_name>  Generate (synthesize) the problem into ./synth/<problem_name>
+  build <problem_name>  Build problem artifacts
+  run   <problem_name>  Runs docker container with <problem_name>:latest image
+  help                  Show this help message
+
+Examples:
+  $(basename "$0") init
+  $(basename "$0") synth problem_1
+  $(basename "$0") build problem_1
+  $(basename "$0") run problem_1
+
+EOF
+    exit 1
+}
+
+######### Script starts here #########
 subcmd="${1}"
 args="${2}"
+
+[ "$IGNORE_CHECK" = "Y" ] || check
 
 case "$subcmd" in
     "init")
@@ -94,9 +149,12 @@ case "$subcmd" in
         synth "$args"
         ;;
     "build")
-        node liri.js "$args"
+        build "$args"
+        ;;
+    "run")
+        run "$args"
         ;;
     *)
-        echo "Unknown subcommand $subcmd"
+        usage
         ;;
 esac
