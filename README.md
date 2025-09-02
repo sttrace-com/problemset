@@ -1,6 +1,11 @@
-# sttrace.com
+![Static Badge](https://img.shields.io/badge/%F0%9F%8C%90%20sttrace.com-gray)
+![Static Badge](https://img.shields.io/badge/License-MIT-blue)
+![Static Badge](https://img.shields.io/badge/%F0%9F%9A%80%20Ready%20to%20Contribute-blue)
+![Static Badge](https://img.shields.io/badge/%E2%AD%90Active-green)
 
-This repository contains all the problems from the [sttrace.com](https://sttrace.com/problemset) problemset.
+# 💻[sttrace.com](https://sttrace.com/problemset)
+
+**sttrace** is a platform for real-world SDE, SRE, and DevOps challenges. Practice problems that mirror actual production scenarios. Problems focus on debugging, performance optimization, security, and Linux system-level scenarios. This repository contains all the problems from the [sttrace.com](https://sttrace.com/problemset) problemset.
 
 ## How to create a new problem?
 
