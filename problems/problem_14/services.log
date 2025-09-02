@@ -1,0 +1,101 @@
+TIMESTAMP             LEVEL   SERVICE          REQUEST_ID   USER          MESSAGE
+2025-08-19:10:58:54   INFO    auth-service     req-001      john.doe      Login successful
+2025-08-19:10:59:12   WARN    api-gateway      req-002      jane.smith    Request took longer than expected (1200ms)
+2025-08-19:11:00:03   ERROR   payment-service  req-003      bob.lee       Payment failed: insufficient funds
+2025-08-19:11:01:45   INFO    order-service    req-004      alice.kim     Order placed successfully (order_id=12345)
+2025-08-19:11:02:17   DEBUG   cache-service    req-005      system        Cache miss for key=product:456
+2025-08-19:11:03:55   INFO    api-gateway      req-006      john.doe      Request routed to payment-service
+2025-08-19:11:04:22   ERROR   auth-service     req-007      jane.smith    Invalid session token
+2025-08-19:11:05:39   INFO    order-service    req-008      bob.lee       Order cancelled (order_id=12345)
+2025-08-19:11:06:44   WARN    payment-service  req-009      alice.kim     High latency detected (2500ms)
+2025-08-19:11:07:15   DEBUG   cache-service    req-010      system        Cache warmup completed
+2025-08-19:11:08:05   INFO    auth-service     req-011      john.doe      Password changed successfully
+2025-08-19:11:08:37   WARN    api-gateway      req-012      jane.smith    Request size exceeded threshold
+2025-08-19:11:09:12   ERROR   payment-service  req-013      bob.lee       Transaction timeout
+2025-08-19:11:09:48   INFO    order-service    req-014      alice.kim     Order updated (order_id=12346)
+2025-08-19:11:10:21   DEBUG   cache-service    req-015      system        Evicted expired session tokens
+2025-08-19:11:11:03   INFO    api-gateway      req-016      john.doe      Request forwarded to order-service
+2025-08-19:11:11:47   ERROR   auth-service     req-017      jane.smith    Too many login attempts
+2025-08-19:11:12:19   INFO    order-service    req-018      bob.lee       Order shipment initiated (order_id=12347)
+2025-08-19:11:12:54   WARN    payment-service  req-019      alice.kim     Currency mismatch detected
+2025-08-19:11:13:25   DEBUG   cache-service    req-020      system        Preloaded top-selling products
+2025-08-19:11:14:09   INFO    auth-service     req-021      john.doe      Session renewed
+2025-08-19:11:14:45   WARN    api-gateway      req-022      jane.smith    Slow response from payment-service
+2025-08-19:11:15:16   ERROR   payment-service  req-023      bob.lee       Card declined
+2025-08-19:11:15:52   INFO    order-service    req-024      alice.kim     Order returned (order_id=12348)
+2025-08-19:11:16:28   DEBUG   cache-service    req-025      system        Cleared product cache
+2025-08-19:11:17:02   INFO    api-gateway      req-026      john.doe      API key validated
+2025-08-19:11:17:39   ERROR   auth-service     req-027      jane.smith    Password expired
+2025-08-19:11:18:14   INFO    order-service    req-028      bob.lee       Order refunded (order_id=12349)
+2025-08-19:11:18:56   WARN    payment-service  req-029      alice.kim     Gateway connection unstable
+2025-08-19:11:19:32   DEBUG   cache-service    req-030      system        Cache hit for key=user:1001
+2025-08-19:11:20:07   INFO    auth-service     req-031      john.doe      MFA verification successful
+2025-08-19:11:20:44   WARN    api-gateway      req-032      jane.smith    Unexpected response format
+2025-08-19:11:21:18   ERROR   payment-service  req-033      bob.lee       Payment service unavailable
+2025-08-19:11:21:55   INFO    order-service    req-034      alice.kim     Order completed (order_id=12350)
+2025-08-19:11:22:27   DEBUG   cache-service    req-035      system        Cache rebuilt for category data
+2025-08-19:11:23:03   INFO    api-gateway      req-036      john.doe      Request successfully processed
+2025-08-19:11:23:41   ERROR   auth-service     req-037      jane.smith    Invalid credentials
+2025-08-19:11:24:14   INFO    order-service    req-038      bob.lee       Order delivered (order_id=12351)
+2025-08-19:11:24:49   WARN    payment-service  req-039      alice.kim     Transaction flagged for review
+2025-08-19:11:25:26   DEBUG   cache-service    req-040      system        Session cache cleanup complete
+2025-08-19:11:26:03   INFO    auth-service     req-041      john.doe      User profile updated
+2025-08-19:11:26:37   WARN    api-gateway      req-042      jane.smith    Service rate-limited
+2025-08-19:11:27:12   ERROR   payment-service  req-043      bob.lee       Payment rollback failed
+2025-08-19:11:27:45   INFO    order-service    req-044      alice.kim     Order packed (order_id=12352)
+2025-08-19:11:28:20   DEBUG   cache-service    req-045      system        Loaded trending searches
+2025-08-19:11:28:54   INFO    api-gateway      req-046      john.doe      Connection established
+2025-08-19:11:29:30   ERROR   auth-service     req-047      jane.smith    Unauthorized API access
+2025-08-19:11:30:06   INFO    order-service    req-048      bob.lee       Order confirmed (order_id=12353)
+2025-08-19:11:30:42   WARN    payment-service  req-049      alice.kim     Retry attempt in progress
+2025-08-19:11:31:17   DEBUG   cache-service    req-050      system        Cache stats reported
+2025-08-19:11:31:55   INFO    auth-service     req-051      john.doe      Login attempt successful
+2025-08-19:11:32:29   WARN    api-gateway      req-052      jane.smith    Response time exceeded SLA
+2025-08-19:11:33:02   ERROR   payment-service  req-053      bob.lee       Insufficient permissions on card
+2025-08-19:11:33:38   INFO    order-service    req-054      alice.kim     Order placed successfully (order_id=12354)
+2025-08-19:11:34:15   DEBUG   cache-service    req-055      system        Cache refreshed for order data
+2025-08-19:11:34:50   INFO    api-gateway      req-056      john.doe      Request routed to order-service
+2025-08-19:11:35:23   ERROR   auth-service     req-057      jane.smith    Session expired
+2025-08-19:11:35:58   INFO    order-service    req-058      bob.lee       Order cancelled (order_id=12355)
+2025-08-19:11:36:34   WARN    payment-service  req-059      alice.kim     Duplicate transaction detected
+2025-08-19:11:37:11   DEBUG   cache-service    req-060      system        Cache warmup in progress
+2025-08-19:11:37:48   INFO    auth-service     req-061      john.doe      MFA challenge completed
+2025-08-19:11:38:25   WARN    api-gateway      req-062      jane.smith    Unexpected header value
+2025-08-19:11:39:01   ERROR   payment-service  req-063      bob.lee       Payment authorization failed
+2025-08-19:11:39:37   INFO    order-service    req-064      alice.kim     Order updated (order_id=12356)
+2025-08-19:11:40:12   DEBUG   cache-service    req-065      system        Cache flush executed
+2025-08-19:11:40:49   INFO    api-gateway      req-066      john.doe      API token validated
+2025-08-19:11:41:22   ERROR   auth-service     req-067      jane.smith    Invalid OTP
+2025-08-19:11:41:57   INFO    order-service    req-068      bob.lee       Order dispatched (order_id=12357)
+2025-08-19:11:42:33   WARN    payment-service  req-069      alice.kim     Card issuer not responding
+2025-08-19:11:43:07   DEBUG   cache-service    req-070      system        Prefetched recommended items
+2025-08-19:11:43:41   INFO    auth-service     req-071      john.doe      Security question answered
+2025-08-19:11:44:16   WARN    api-gateway      req-072      jane.smith    Slow downstream service
+2025-08-19:11:44:49   ERROR   payment-service  req-073      bob.lee       Invalid CVV code
+2025-08-19:11:45:25   INFO    order-service    req-074      alice.kim     Order refund initiated (order_id=12358)
+2025-08-19:11:45:59   DEBUG   cache-service    req-075      system        Product search cache updated
+2025-08-19:11:46:34   INFO    api-gateway      req-076      john.doe      Request authorized
+2025-08-19:11:47:07   ERROR   auth-service     req-077      jane.smith    User locked out
+2025-08-19:11:47:41   INFO    order-service    req-078      bob.lee       Order delivered (order_id=12359)
+2025-08-19:11:48:17   WARN    payment-service  req-079      alice.kim     Payment gateway timeout
+2025-08-19:11:48:53   DEBUG   cache-service    req-080      system        Cleared session cache
+2025-08-19:11:49:26   INFO    auth-service     req-081      john.doe      Password reset requested
+2025-08-19:11:50:01   WARN    api-gateway      req-082      jane.smith    Request payload too large
+2025-08-19:11:50:34   ERROR   payment-service  req-083      bob.lee       Payment declined: risk rule
+2025-08-19:11:51:09   INFO    order-service    req-084      alice.kim     Order packed (order_id=12360)
+2025-08-19:11:51:44   DEBUG   cache-service    req-085      system        Cache invalidated for user profiles
+2025-08-19:11:52:19   INFO    api-gateway      req-086      john.doe      API key rotated
+2025-08-19:11:52:55   ERROR   auth-service     req-087      jane.smith    Unauthorized login attempt
+2025-08-19:11:53:28   INFO    order-service    req-088      bob.lee       Order confirmed (order_id=12361)
+2025-08-19:11:54:03   WARN    payment-service  req-089      alice.kim     Transaction queued for retry
+2025-08-19:11:54:37   DEBUG   cache-service    req-090      system        Cache stats flushed
+2025-08-19:11:55:13   INFO    auth-service     req-091      john.doe      Logged out successfully
+2025-08-19:11:55:49   WARN    api-gateway      req-092      jane.smith    Malformed JSON detected
+2025-08-19:11:56:24   ERROR   payment-service  req-093      bob.lee       Chargeback requested
+2025-08-19:11:56:59   INFO    order-service    req-094      alice.kim     Order returned (order_id=12362)
+2025-08-19:11:57:32   DEBUG   cache-service    req-095      system        Refreshed daily reports cache
+2025-08-19:11:58:06   INFO    api-gateway      req-096      john.doe      Connection closed gracefully
+2025-08-19:11:58:41   ERROR   auth-service     req-097      jane.smith    Account suspended
+2025-08-19:11:59:17   INFO    order-service    req-098      bob.lee       Order completed (order_id=12363)
+2025-08-19:11:59:52   WARN    payment-service  req-099      alice.kim     Exchange rate unavailable
+2025-08-19:12:00:26   DEBUG   cache-service    req-100      system        End-of-day cache flush

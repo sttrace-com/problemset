@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Check if `localhost:8080/ping` returns pong
+if ! curl -s http://localhost:8080/ping | grep -q "pong"; then
+  echo "failure"
+  exit 1
+fi
+
+# Go to /home/ubuntu/api
+cd /home/ubuntu/api || { echo "failure"; exit 1; }
+
+git config --global --add safe.directory /home/ubuntu/api
+
+# Check if `dev` branch exists
+if ! git show-ref --verify --quiet refs/heads/dev; then
+  echo "failure"
+  exit 1
+fi
+
+# Check if latest commit on dev branch has required message
+latest_commit_msg=$(git log -1 --pretty=%B dev)
+if [[ "$latest_commit_msg" != "feat: add new /ping endpoint" ]]; then
+  echo "failure"
+  exit 1
+fi
+
+echo "success"

@@ -1,4 +1,4 @@
-# Problems Repository
+# sttrace.com
 
 This repository contains all the problems from the [sttrace.com](https://sttrace.com/problemset) problemset.
 

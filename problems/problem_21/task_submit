@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -e
+
+[ -f "./processed_payments" ] && echo "failure" && exit 1
+
+# Check if binary exists
+if [ ! -f '/home/ubuntu/discount_processor' ]; then
+    echo "failure"
+    exit 1
+fi
+
+# Run the processor
+if ! /home/ubuntu/discount_processor < final_payments.txt; then
+    echo "failure"
+    exit 1
+fi
+
+# Compare outputs
+if diff -q processed_payments.txt ans.txt > /dev/null; then
+    echo "success"
+else
+    echo "failure"
+    exit 1
+fi

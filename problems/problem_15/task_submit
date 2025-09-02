@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+FILE_PATH="/home/ubuntu/files.txt"
+RESULT_FILE="/home/ubuntu/results.txt"
+
+if [ ! -f "$RESULT_FILE" ]; then
+    echo "failure"
+    exit 1
+fi
+
+expected=$(cat "$FILE_PATH" | xargs -n 1 basename | sort | uniq -c | sort | awk '{print $2 " " $1}')
+output=$(cat "$RESULT_FILE")
+
+if [ "$expected" == "$output" ]; then
+    echo "success"
+    exit 0
+else
+    echo "failure"
+    exit 1
+fi

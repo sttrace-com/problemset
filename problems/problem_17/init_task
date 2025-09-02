@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+
+mkdir /home/ubuntu/api
+
+cp -r app.py requirements.txt .git /home/ubuntu/api
+
+chown -R ubuntu:ubuntu /home/ubuntu/api

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -e
+
+# 1. Check if archive exists
+ARCHIVE="/home/ubuntu/archived.tar"
+ROTATED_DIR="./rotated"
+UBUNTU_LOGS="/home/ubuntu/logs"
+
+if [ ! -f "$ARCHIVE" ]; then
+    echo "failure"
+    exit 1
+fi
+
+# 2. Check filenames inside tar vs rotated dir
+# List files in tar without paths (strip leading dirs)
+tar_files=$(tar -tf "$ARCHIVE" | tail -n +2 | xargs -n 1 basename | sort)
+rotated_files=$(find "$ROTATED_DIR" -type f | xargs -n 1 basename | sort)
+
+if [ "$tar_files" != "$rotated_files" ]; then
+    echo "failure"
+    exit 1
+fi
+
+# 3. Ensure rotated files are not in ubuntu logs
+for f in "$ROTATED_DIR"/*; do
+    fname=$(basename "$f")
+    if [ -f "$UBUNTU_LOGS/$fname" ]; then
+        echo "failure"
+        exit 1
+    fi
+done
+
+# All checks passed
+echo "success"
+exit 0

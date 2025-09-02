@@ -1,0 +1,9 @@
+{
+    "title": "Create file",
+    "labels": ["File", "Linux", "Beginner"],
+    "hints": ["You can install vim or nano", "Use echo command with redirect operator"],
+    "difficulty": 1,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

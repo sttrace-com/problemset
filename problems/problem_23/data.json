@@ -1,0 +1,9 @@
+{
+    "title": "Post-Maintenance script failure",
+    "labels": ["Debugging", "Python"],
+    "hints": ["Try executing monitord manually"],
+    "difficulty": 2,
+    "external_packages": ["pip", "vim"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

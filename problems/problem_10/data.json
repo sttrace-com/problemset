@@ -1,0 +1,9 @@
+{
+    "title": "Fix the broken API",
+    "labels": ["Python", "SRE", "Flask", "DevOps"],
+    "hints": ["See the log file for more details", "You can use curl to hit the running API"],
+    "difficulty": 2,
+    "external_packages": ["pip", "curl", "jq"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Unique cities",
+    "labels": ["Linux", "Parsing"],
+    "hints": [
+        "Use awk command to format each line",
+        "Use sort command to sort rows for specific column",
+        "Create a python script to do the job"
+    ],
+    "difficulty": 1,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

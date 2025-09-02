@@ -1,0 +1,10 @@
+{
+    "title": "Extract user data",
+    "labels": ["File", "Parsing", "JSON"],
+    "hints": ["Extract the tar file with tar command", "Use jq to parse each file"],
+    "difficulty": 2,
+    "external_packages": ["jq"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+    
+}

@@ -1,0 +1,9 @@
+{
+    "title": "Fix the broken release",
+    "labels": ["Linux", "DevOps", "SRE"],
+    "hints": ["Try running release_pipeline.sh script manually", "Use --version or -v to check artifact version"],
+    "difficulty": 3,
+    "external_packages": ["build-essential", "jq", "vim"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

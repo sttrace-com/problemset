@@ -1,0 +1,21 @@
+TIMESTAMP             LEVEL   SERVICE          REQUEST_ID   USER          MESSAGE
+2025-08-19:11:00:03   ERROR   payment-service  req-003      bob.lee       Payment failed: insufficient funds
+2025-08-19:11:04:22   ERROR   auth-service     req-007      jane.smith    Invalid session token
+2025-08-19:11:09:12   ERROR   payment-service  req-013      bob.lee       Transaction timeout
+2025-08-19:11:11:47   ERROR   auth-service     req-017      jane.smith    Too many login attempts
+2025-08-19:11:15:16   ERROR   payment-service  req-023      bob.lee       Card declined
+2025-08-19:11:17:39   ERROR   auth-service     req-027      jane.smith    Password expired
+2025-08-19:11:21:18   ERROR   payment-service  req-033      bob.lee       Payment service unavailable
+2025-08-19:11:23:41   ERROR   auth-service     req-037      jane.smith    Invalid credentials
+2025-08-19:11:27:12   ERROR   payment-service  req-043      bob.lee       Payment rollback failed
+2025-08-19:11:29:30   ERROR   auth-service     req-047      jane.smith    Unauthorized API access
+2025-08-19:11:33:02   ERROR   payment-service  req-053      bob.lee       Insufficient permissions on card
+2025-08-19:11:35:23   ERROR   auth-service     req-057      jane.smith    Session expired
+2025-08-19:11:39:01   ERROR   payment-service  req-063      bob.lee       Payment authorization failed
+2025-08-19:11:41:22   ERROR   auth-service     req-067      jane.smith    Invalid OTP
+2025-08-19:11:44:49   ERROR   payment-service  req-073      bob.lee       Invalid CVV code
+2025-08-19:11:47:07   ERROR   auth-service     req-077      jane.smith    User locked out
+2025-08-19:11:50:34   ERROR   payment-service  req-083      bob.lee       Payment declined: risk rule
+2025-08-19:11:52:55   ERROR   auth-service     req-087      jane.smith    Unauthorized login attempt
+2025-08-19:11:56:24   ERROR   payment-service  req-093      bob.lee       Chargeback requested
+2025-08-19:11:58:41   ERROR   auth-service     req-097      jane.smith    Account suspended

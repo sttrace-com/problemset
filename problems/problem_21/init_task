@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf  /home/ubuntu/*
+
+cd /home/admin
+
+cp payments.txt /home/ubuntu/
+cp expected_processed_payments.txt /home/ubuntu
+
+chown ubuntu:ubuntu /home/ubuntu/payments.txt
+chown ubuntu:ubuntu /home/ubuntu/expected_processed_payments.txt

@@ -1,0 +1,13 @@
+{
+    "title": "Rotate log files",
+    "labels": ["Linux", "File", "SRE"],
+    "hints": [
+        "Use the find command with the -size option to locate files larger than a certain size. Remember that +15k means strictly greater than 15 KB.",
+        "The tar command can create an archive from a list of files. Consider combining find with tar using xargs or the -T option.",
+        "After archiving, make sure to remove or move the original files from the logs/ directory so that none of the rotated files remain there."
+    ],
+    "difficulty": 2,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

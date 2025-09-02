@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+
+generate_file_paths() {
+    local num_paths=$1
+    local output_file=${2:-file_paths.txt}  # Default output file
+
+    if [ -z "$num_paths" ]; then
+        echo "Usage: generate_file_paths <number_of_paths> [output_file]"
+        return 1
+    fi
+
+    > "$output_file"
+
+    local dirs=("home/user/docs" "var/log/nginx" "usr/local/bin" "home/user/photos" "opt/data")
+    local files=("report" "access" "script" "photo" "logfile" "config" "notes" "backup")
+    local extensions=("txt" "log" "sh" "jpg" "cfg" "bak")
+
+    for ((i=1; i<=num_paths; i++)); do
+        local dir="${dirs[$RANDOM % ${#dirs[@]}]}"
+        local file="${files[$RANDOM % ${#files[@]}]}.${extensions[$RANDOM % ${#extensions[@]}]}"
+        echo "$dir/$file" >> "$output_file"
+    done
+
+    echo "Generated $num_paths dummy file paths in $output_file"
+}
+
+[ -f "files.txt" ] && rm "files.txt"
+
+touch files.txt
+
+generate_file_paths 500 files.txt
+
+cp files.txt /home/ubuntu
+chmod 777 /home/ubuntu/files.txt

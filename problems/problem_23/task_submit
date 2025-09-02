@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd /home/ubuntu || {
+    echo "failure"
+    exit 1
+}
+
+if [[ ! -f "script.py" ]]; then
+    echo "failure"
+    exit 1
+fi
+
+if sudo -u ubuntu -- ./monitord ./script.py > /dev/null 2>&1; then
+    echo "success"
+else
+    echo "failure"
+    exit 1
+fi

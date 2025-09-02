@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+cd /home/admin
+
+set -euo pipefail
+
+# Configurable params
+MAX_DEPTH=6      # maximum recursion depth
+FILE_COUNT=15    # max number of files per dir
+DIR_COUNT=6      # max number of dirs per dir
+
+BASE_DIR="files"
+
+# Clean up any old structure
+rm -rf "$BASE_DIR"
+mkdir -p "$BASE_DIR"
+rm -f *_store.txt
+
+# Random filename parts
+FILE_PREFIXES=("script" "log" "service" "data")
+FILE_EXTS=("sh" "txt" "log" "bak")
+
+# Recursive function
+create_structure() {
+    local depth=$1
+    local path=$2
+
+    if (( depth <= 0 )); then
+        return
+    fi
+
+    # Pick random number of files for this directory (1..FILE_COUNT)
+    local file_total=$(( (RANDOM % FILE_COUNT) + 1 ))
+    for (( i=0; i<file_total; i++ )); do
+        rand_num=$((RANDOM % 1000))
+        uuid=$(dbus-uuidgen | cut -c -6)
+        prefix=${FILE_PREFIXES[$((RANDOM % ${#FILE_PREFIXES[@]}))]}
+        ext=${FILE_EXTS[$((RANDOM % ${#FILE_EXTS[@]}))]}
+        filename="${rand_num}_${uuid}_${prefix}.${ext}"
+        echo "${path}/${filename}" >> "${ext}_store.txt"
+        touch "$path/$filename"
+        echo "Created ${path}/${filename}"
+    done
+
+    # Pick random number of subdirs (1..DIR_COUNT)
+    local dir_total=$(( (RANDOM % DIR_COUNT) + 1 ))
+    for (( j=0; j<dir_total; j++ )); do
+        subdir="$path/dir_${depth}_${j}"
+        mkdir -p "$subdir"
+        echo "Created directory ${subdir}"
+    
+    for dir in "$path"/dir_${depth}_*; do
+        if (( RANDOM % 2 == 0 )); then
+            create_structure $((depth - 1)) "$dir"
+        fi
+    done
+
+    done
+}
+
+# Start recursion
+create_structure "$MAX_DEPTH" "$BASE_DIR"
+
+echo "✅ Dummy file structure created under '$BASE_DIR/'"
+
+cp -r files /home/ubuntu/
+
+chmod -R 755 /home/ubuntu/files

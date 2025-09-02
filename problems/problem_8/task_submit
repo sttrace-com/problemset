@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+if [ ! -d '/home/ubuntu/releases/release_1' ]; then
+    echo "failure"
+    exit 1
+fi
+
+
+if [ ! -f '/home/ubuntu/releases/release_1/configs.json' ]; then
+    echo "failure"
+    exit 1
+fi
+
+config_version=$(jq -r .release_version < /home/ubuntu/releases/release_1/configs.json)
+
+atrifact_version=$(/home/ubuntu/releases/release_1/RR_artifact --version)
+
+if [[ "$config_version" != "$atrifact_version" ]]; then
+    echo "failure"
+    exit 1
+fi
+
+echo "success"
+exit 1

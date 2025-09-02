@@ -1,0 +1,9 @@
+{
+    "title": "Extract file",
+    "labels": ["Linux", "Compressions"],
+    "hints": ["User tar --help command to know more"],
+    "difficulty": 2,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

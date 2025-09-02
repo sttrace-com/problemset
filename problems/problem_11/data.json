@@ -1,0 +1,12 @@
+{
+    "title": "Find the faulty binaries",
+    "labels": ["Linux", "Security"],
+    "hints": [
+        "Use the strings command on the binaries to print out any human-readable sequences.",
+        "Pipe the output of strings into grep to search for the hardcoded password."
+    ],
+    "difficulty": 2,
+    "external_packages": ["build-essential", "binutils"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

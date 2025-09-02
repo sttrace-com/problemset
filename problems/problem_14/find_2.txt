@@ -1,0 +1,7 @@
+TIMESTAMP             LEVEL   SERVICE          REQUEST_ID   USER          MESSAGE
+2025-08-19:11:00:03   ERROR   payment-service  req-003      bob.lee       Payment failed: insufficient funds
+2025-08-19:11:21:18   ERROR   payment-service  req-033      bob.lee       Payment service unavailable
+2025-08-19:11:27:12   ERROR   payment-service  req-043      bob.lee       Payment rollback failed
+2025-08-19:11:39:01   ERROR   payment-service  req-063      bob.lee       Payment authorization failed
+2025-08-19:11:48:17   WARN    payment-service  req-079      alice.kim     Payment gateway timeout
+2025-08-19:11:50:34   ERROR   payment-service  req-083      bob.lee       Payment declined: risk rule

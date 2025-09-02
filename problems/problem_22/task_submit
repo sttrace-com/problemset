@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ ! -f '/home/ubuntu/result.txt' ]; then
+    echo "failure"
+    exit 1
+fi
+
+if diff -q ans.txt "/home/ubuntu/result.txt" > /dev/null; then
+    echo "success"
+else
+    echo "failure"
+    exit 1
+fi

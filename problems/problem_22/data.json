@@ -1,0 +1,9 @@
+{
+    "title": "Reverse the file content",
+    "labels": ["File", "Linux"],
+    "hints": ["Use tac command"],
+    "difficulty": 1,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

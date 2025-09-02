@@ -1,0 +1,9 @@
+{
+    "title": "Line count",
+    "labels": ["File", "Linux", "Beginner"],
+    "hints": ["Use wc command", "Watch out for extra spaces at the start of lines"],
+    "difficulty": 2,
+    "external_packages": ["vim"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

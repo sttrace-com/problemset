@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ ! -f '/home/ubuntu/results.txt' ]; then
+    echo "failure"
+    exit 1
+fi
+
+
+if diff <(sort /home/admin/ans.txt) <(sort /home/ubuntu/results.txt) >/dev/null; then
+    echo "success"
+    exit 0
+else
+    echo "failure"
+    exit 1
+fi

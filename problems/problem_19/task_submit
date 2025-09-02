@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ ! -f '/home/ubuntu/result' ]; then
+    echo "failure"
+    exit 1
+fi
+
+output=$(/home/ubuntu/result)
+
+if [ "$output" = "Hello, World!" ]; then
+    echo "success"
+    exit 0
+else
+    echo "failure"
+    exit 1
+fi

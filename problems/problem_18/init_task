@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -e
+
+echo "Setting up directory..."
+
+rm -rf /home/ubuntu/*
+cd /home/admin
+
+# Generate sample.txt if not exists
+if [ ! -f sample.txt ]; then
+    echo "Generating sample.txt..."
+    for i in $(seq 1 2000); do
+        dbus-uuidgen >> sample.txt
+    done
+else
+    echo "sample.txt already exists, skipping..."
+fi
+
+# Generate input.txt if not exists
+if [ ! -f input.txt ]; then
+    echo "Generating input.txt..."
+    for i in $(seq 1 3000); do
+        dbus-uuidgen >> input.txt
+    done
+else
+    echo "input.txt already exists, skipping..."
+fi
+
+# Generate final.txt if not exists
+if [ ! -f final.txt ]; then
+    echo "Generating final.txt..."
+    ./script.py input.txt final.txt
+else
+    echo "final.txt already exists, skipping..."
+fi
+
+cp script.py sample.txt /home/ubuntu
+
+chown ubuntu:ubuntu /home/ubuntu/*
+
+echo "Setup complete."

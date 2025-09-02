@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set -e
+
+INPUT_FILE="input.txt"
+OUTPUT_FILE="output.txt"
+SCRIPT="/home/ubuntu/script.py"
+TIMEOUT_SECONDS=2
+
+
+[ ! -f "$SCRIPT" ] && echo "failure" && exit 1
+[ -f "$OUTPUT_FILE" ] && rm "$OUTPUT_FILE"
+
+OUTPUT=$(timeout $TIMEOUT_SECONDS python3 "$SCRIPT" "$INPUT_FILE" "$OUTPUT_FILE" 2>&1) || { echo "failure"; exit 1; }
+
+echo "$OUTPUT"
+
+ELAPSED=$(echo "$OUTPUT" | grep -oP 'Finished in \K[0-9]+\.[0-9]+')
+
+if [ -z "$ELAPSED" ]; then
+    echo "failure"
+    exit 1
+fi
+
+python3 - <<END
+import sys
+t = float("$ELAPSED")
+if t > 0.02:
+    print("failure")
+    sys.exit(1)
+END
+
+OUTPUT_HASH=$(sha256sum output.txt | awk '{print $1}')
+FINAL_HASH=$(sha256sum final.txt | awk '{print $1}')
+
+if [ "$OUTPUT_HASH" != "$FINAL_HASH" ]; then
+    echo "failure"
+    exit 1
+fi
+
+echo "success"

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm /home/ubuntu/*
+
+cd /home/admin
+
+[ -f "data.tar.gz" ] && cp data.tar.gz /home/ubuntu
+gen_uuid() {
+    dbus-uuidgen
+}
+
+touch ans.txt
+mkdir -p data
+
+for i in {1..20}; do
+    uuid=$(gen_uuid)
+    name="User_$i"
+    role=$(shuf -e admin developer tester support -n 1)
+    email="${name,,}@example.com"
+    age=$((20 + RANDOM % 15))
+
+    echo "$uuid $name" >> ans.txt
+
+    cat > "data/user_${i}.json" <<EOF
+{
+    "id": "$uuid",
+    "name": "$name",
+    "role": "$role",
+    "email": "$email",
+    "age": $age
+}
+EOF
+done
+
+tar -cvf data.tar.gz data
+chmod 777 data.tar.gz
+
+cp ./data.tar.gz /home/ubuntu/

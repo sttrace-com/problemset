@@ -1,0 +1,13 @@
+{
+    "title": "Corrupted files",
+    "labels": ["File", "Linux", "Security"],
+    "hints": [
+        "Use sha256sum to compare each file with shasums.txt",
+        "Process files in the order listed in shasums.txt",
+        "Append files to corrupted.txt or uncorrupted.txt based on the checksum match"
+    ],
+    "difficulty": 2,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

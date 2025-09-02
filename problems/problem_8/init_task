@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+
+artifact="RR_artifact"
+
+gcc -o $artifact ./artifact.c
+
+release_dir="/home/ubuntu/releases/release_1"
+mkdir -p $release_dir
+
+ls
+
+
+cp $artifact $release_dir
+cp configs.json $release_dir
+chmod 555 release_pipeline.sh
+chmod -R 777 /home/ubuntu/releases/release_1
+
+cp release_pipeline.sh /home/ubuntu/

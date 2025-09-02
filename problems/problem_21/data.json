@@ -1,0 +1,9 @@
+{
+    "title": "Payment processor",
+    "labels": ["awk", "File processing"],
+    "hints": ["Use awk to parse the file"],
+    "difficulty": 2,
+    "external_packages": ["vim"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

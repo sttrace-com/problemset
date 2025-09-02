@@ -1,0 +1,12 @@
+{
+    "title": "Filter files by extension",
+    "labels": ["File", "Linux"],
+    "hints": [
+        "Use find command",
+        "Use -name '*.<extension>' to filter out appropriate files"
+    ],
+    "difficulty": 2,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

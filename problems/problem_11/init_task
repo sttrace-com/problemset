@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+[ -f "./ans.txt" ] && rm ans.txt
+
+gcc -o no_pass no_password.c
+
+target="/home/ubuntu/binaries"
+
+mkdir "$target"
+touch ans.txt
+
+gcc -o pass password.c
+for i in {1..15}
+do
+    r="${RANDOM}"
+    echo "${r}_bin" >> ans.txt
+    cp ./pass "$target/${r}_bin"
+done
+
+rm ./pass
+
+#Temp change to avoid passing password file name in binary
+mv password.c password.c_tmp
+mv no_password.c password.c
+
+gcc -o pass password.c
+
+for i in {1..15}
+do
+    cp ./pass "$target/${RANDOM}_bin"
+done
+
+mv password.c no_password.c
+mv password.c_tmp password.c

@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+if [ ! -f '/home/ubuntu/corrupted.txt' ]; then
+    echo "failure"
+    exit 1
+fi
+
+
+if [ ! -f '/home/ubuntu/uncorrupted.txt' ]; then
+    echo "failure"
+    exit 1
+fi
+
+
+corrupted_file_sha=$(sha256sum /home/ubuntu/corrupted.txt | awk '{print $1}')
+req_corrupted_sha=$(sha256sum /home/admin/corrupted.txt | awk '{print $1}')
+
+uncorrupted_file_sha=$(sha256sum /home/ubuntu/uncorrupted.txt | awk '{print $1}')
+req_uncorrupted_sha=$(sha256sum /home/admin/uncorrupted.txt | awk '{print $1}')
+
+if [ "${corrupted_file_sha}" != ${req_corrupted_sha} ]
+then
+    echo "failure"
+    exit 1
+fi
+
+if [ "${uncorrupted_file_sha}" != ${req_uncorrupted_sha} ]
+then
+    echo "failure"
+    exit 1
+fi
+
+echo "success"

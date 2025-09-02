@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+check_output() {
+    local cmd="$1"
+    local file="$2"
+    local stdin_file="$3"
+
+    local output
+    output="$($cmd < "$stdin_file")"
+
+    if [ "$output" != "$(cat "$file")" ]; then
+        echo "failure"
+        exit 1
+    fi
+}
+
+check_output_value(){
+    local cmd="$1"
+    local value="$2"
+    local stdin_file="$3"
+
+    local output
+    output="$($cmd < "$stdin_file")"
+
+    if [ "$output" != "$value" ]; then
+        echo "failure"
+        exit 1
+    fi
+}
+
+bin_path="/home/ubuntu/lproc"
+
+if [ ! -f "${bin_path}" ]; then
+    echo "failure"
+    exit 1
+fi
+
+[ -x "${bin_path}" ] || { echo "failure"; exit 1; }
+
+check_output "$bin_path find Password" "find_1.txt" services.log
+check_output "$bin_path find Payment" "find_2.txt" services.log
+check_output "$bin_path find 3 order-service" "find_3.txt" services.log
+check_output "$bin_path find 2 ERROR" "find_4.txt" services.log
+
+check_output_value "$bin_path count" "100" services.log
+
+echo "success"

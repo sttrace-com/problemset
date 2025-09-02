@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+
+cp start_servr.py /home/ubuntu
+
+chmod +rw /home/ubuntu/start_servr.py

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [ ! -f '/home/ubuntu/results.txt' ]; then
+    echo "failure"
+    exit 1
+fi
+
+required_sha=$(sha256sum /home/admin/data.txt)
+
+file_sha=$(sha256sum /home/ubuntu/results.txt | awk '{print $1}')
+
+if [ "${file_sha}" != ${required_sha} ]
+then
+    echo "failure"
+    exit 1
+fi
+
+echo "success"

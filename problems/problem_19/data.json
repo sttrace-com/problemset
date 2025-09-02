@@ -1,0 +1,9 @@
+{
+    "title": "Compile C code",
+    "labels": ["C", "Compiler"],
+    "hints": ["User gcc to compile C code", "User -o to create binary with appropriate name"],
+    "difficulty": 1,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

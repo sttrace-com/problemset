@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+# Clean up ubuntu home
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+
+
+# If logs already exist in ubuntu home, copy and exit
+[ -d "./logs" ] && rm -rf logs
+[ -f "ans.txt" ] && rm ans.txt
+[ -d "rotated" ] && rm -rf rotated
+
+# Create logs directory
+mkdir -p logs
+mkdir -p rotated
+
+# Generate 50 log files with random lines (1-500)
+for i in {1..50}
+do
+    file="logs/log_$i.txt"
+    lines=$(( RANDOM % 500 + 1 ))
+    for j in $(seq 1 $lines)
+    do
+        echo "This is line $j of $file" >> "$file"
+    done
+done
+
+
+find logs/* -type f -size +15k | xargs -I {} cp {} rotated
+
+cp -r ./logs /home/ubuntu/
+
+chmod -R 777 /home/ubuntu/logs

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [ ! -f '/home/ubuntu/start_server.py' ]; then
+    echo "failure"
+    exit 1
+fi
+
+required_sha=$(sha256sum start_servr.py)
+
+file_sha=$(sha256sum /home/ubuntu/start_server.py | awk '{print $1}')
+
+if [ "${file_sha}" != ${required_sha} ]
+then
+    echo "failure"
+    exit 1
+fi
+
+echo "success"

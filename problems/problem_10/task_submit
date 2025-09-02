@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+[ ! -d "/home/ubuntu/files/data" ] && echo "failure" && exit 1
+[ ! -f "/home/ubuntu/files/data/data.txt" ] && echo "failure" && exit 1
+
+response=$(curl -s localhost:5000/fetch | jq -r .data)
+
+if [ -z "$response" ]; then
+    echo "failure"
+    exit 1
+fi
+
+if diff <(echo "$response") /home/ubuntu/files/data/data.txt >/dev/null; then
+    echo "success"
+    exit 0
+else
+    echo "failure"
+    exit 1
+fi

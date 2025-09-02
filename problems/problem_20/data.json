@@ -1,0 +1,9 @@
+{
+    "title": "Compile C code II",
+    "labels": ["C", "Compiler"],
+    "hints": [],
+    "difficulty": 2,
+    "external_packages": ["build-essential"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

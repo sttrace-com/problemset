@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+
+if [ -f "home/admin/files.tar.gz" ]; then
+    cp /home/admin/files.tar.gz /home/ubuntu
+    exit 0
+fi
+
+cd /home/admin
+
+mkdir files
+
+touch ans.txt
+
+for i in {1..15}
+do  
+    limit=$((RANDOM % 1000))
+    echo "${limit} log_file_${i}.txt" >> ans.txt
+    for ((j=1; j<=limit; j++));
+    do
+        dbus-uuidgen >> files/log_file_${i}.txt
+    done
+done
+
+tar -cvf files.tar.gz files
+chmod 777 files.tar.gz
+
+cp files.tar.gz /home/ubuntu/

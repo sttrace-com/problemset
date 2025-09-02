@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+
+[ -f "file.txt" ] && rm -f file.txt
+[ -f "ans.txt" ] && rm -r ans.txt
+
+for i in {1..100}; do
+    line=$(dbus-uuidgen)
+
+    echo "$line" >> ans.txt
+
+    if [ "$i" -eq 1 ]; then
+        echo -n "$line" >> file.txt
+    else
+        echo -n ",$line" >> file.txt
+    fi
+done
+
+
+cp file.txt /home/ubuntu
+
+chown ubuntu:ubuntu /home/ubuntu/file.txt

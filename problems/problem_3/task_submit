@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [ ! -f '/home/ubuntu/script.sh' ]; then
+    echo "failure"
+    exit 1
+fi
+
+if [ ! -f '/home/ubuntu/run.sh' ]; then
+    echo "failure"
+    exit 1
+fi
+
+cd /home/ubuntu
+
+if bash /home/ubuntu/run.sh; then
+    echo "success"
+else
+    echo "failure"
+fi

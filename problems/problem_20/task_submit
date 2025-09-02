@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -e
+
+BIN="/home/ubuntu/final"
+
+if [ ! -x "$BIN" ]; then
+    echo "failure"
+    exit 1
+fi
+
+input=$'level\n5\n5\n3 9 1 7 4\n'
+expected_output=$'Is level a palindrome? 1\nFactorial of 5: 120\nMax in array: 9\nAverage of array: 4.80'
+
+actual_output=$(echo "$input" | "$BIN" | grep -E "^(Is|Factorial|Max|Average)")
+
+if [ "$actual_output" != "$expected_output" ]; then
+    echo "failure"
+    exit 1
+fi
+
+needed=("is_palindrome" "factorial" "max_in_array" "average")
+symbols=$(nm "$BIN" | awk '{print $3}')
+
+for sym in "${needed[@]}"; do
+    if ! echo "$symbols" | grep -q "$sym"; then
+        echo "failure"
+        exit 1
+    fi
+    if ! nm "$BIN" | grep -q " T $sym"; then
+        echo "failure"
+        exit 1
+    fi
+done
+
+echo "success"

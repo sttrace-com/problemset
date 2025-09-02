@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf "/home/ubuntu/*"
+
+cd /home/admin
+
+cp *.c "/home/ubuntu"
+
+chown ubuntu:ubuntu /home/ubuntu/*.c

@@ -1,0 +1,9 @@
+{
+    "title": "Compress files",
+    "labels": ["Linux", "Compressions"],
+    "hints": ["Move all the imp_* files to different directory", "Use tar -c to compress the files"],
+    "difficulty": 2,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

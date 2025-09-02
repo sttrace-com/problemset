@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+
+corrupt_file() {
+    local file="$1"
+    local probability="${2:-50}"
+
+    if (( RANDOM % 100 < probability )); then
+        echo "Corrupting $file"
+        local file_size
+        file_size=$(stat -c%s "$file")
+
+        if (( file_size > 0 )); then
+            local pos=$((RANDOM % file_size))
+            local val=$((RANDOM % 256))
+            printf "\\x$(printf %02x "$val")" | dd of="$file" bs=1 seek="$pos" count=1 conv=notrunc status=none
+        fi
+
+        return 0
+    fi
+
+    return 1
+}
+
+
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+if [ -d "./files" ]
+then
+    cp shasums.txt /home/ubuntu
+    cp -r files /home/ubuntu
+    chmod -R 777 /home/ubuntu/*
+    exit 0
+fi
+
+mkdir files
+touch ans.txt
+touch shasums.txt
+
+for i in {1..50}
+do
+    file_name="file_$RANDOM.txt"
+    for j in {1..100}
+    do
+        dbus-uuidgen >> files/$file_name
+    done
+
+    sha256sum files/$file_name >> shasums.txt
+    corrupt_file files/$file_name && echo "$file_name" >> corrupted.txt || echo "$file_name" >> uncorrupted.txt
+done
+
+
+cp shasums.txt /home/ubuntu
+cp -r files /home/ubuntu
+
+chmod -R 777 /home/ubuntu/*

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+for file in *_store.txt; do
+
+    # check if answer file exists
+    if [ ! -f "/home/ubuntu/$file" ]; then
+        echo "failure"
+        exit 1
+    fi
+
+    og="$file"
+    ans="/home/ubuntu/$file"
+
+    # compare sorted og file with raw ans file
+    if ! diff <(sort "$og") "$ans" >/dev/null; then
+        echo "failure"
+        exit 1
+    fi
+done
+
+echo "success"

@@ -1,0 +1,13 @@
+{
+    "title": "Create a log parser",
+    "labels": ["File", "Parsing", "Linux"],
+    "hints": [
+        "Use awk to parse the input column number",
+        "Use grep to find all logs with word occurrences",
+        "You can use Python to parse each log"
+    ],
+    "difficulty": 3,
+    "external_packages": ["vim", "nano"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

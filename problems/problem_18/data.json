@@ -1,0 +1,13 @@
+{
+    "title": "Python script performance optimization",
+    "labels": ["Performance", "Optimization", "Python"],
+    "hints": [
+        "Profile the code to identify bottlenecks",
+        "Appending strings in Python is very inefficient",
+        "Utilize a single file connection to write all results"
+    ],
+    "difficulty": 3,
+    "external_packages": ["vim"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

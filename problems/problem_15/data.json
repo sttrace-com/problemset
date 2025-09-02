@@ -1,0 +1,14 @@
+{
+    "title": "File name frequency",
+    "labels": ["File", "Linux"],
+    "hints": [
+        "Use basename or cut command to get filename from path",
+        "Use uniq command to find counts",
+        "Use awk to format the results into expected format",
+        "Use sort command to sort the results in required order"
+    ],
+    "difficulty": 2,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

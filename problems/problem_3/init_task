@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+rm -rf /home/ubuntu/*
+
+echo "Setting up directory"
+echo "#!/usr/bin/env bash" >> /home/ubuntu/script.sh
+echo "echo Hello World" >> /home/ubuntu/script.sh
+chown ubuntu:ubuntu /home/ubuntu/script.sh
+
+cat <<EOF > /home/ubuntu/run.sh
+echo Running script
+./script.sh
+EOF
+chown ubuntu:ubuntu /home/ubuntu/run.sh

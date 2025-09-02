@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+
+for i in {1..10}
+do
+    dbus-uuidgen >> data.txt
+done
+
+
+cp app.py requirements.txt /home/ubuntu/
+mkdir /home/ubuntu/files/
+
+chmod -R 777 /home/ubuntu/files
+cp data.txt /home/ubuntu/files
+
+pip install -r /home/ubuntu/requirements.txt

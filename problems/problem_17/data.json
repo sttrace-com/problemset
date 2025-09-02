@@ -1,0 +1,12 @@
+{
+    "title": "Ping API",
+    "labels": ["Flask", "git", "Python"],
+    "hints": [
+        "Use git checkout command to switch branch",
+        "Make sure the server listens on port 8080"
+    ],
+    "difficulty": 1,
+    "external_packages": ["git", "vim", "pip", "curl"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

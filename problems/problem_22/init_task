@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+
+rm -f file.txt
+rm -f ans.txt
+
+for i in {1..100}
+do
+    echo $(dbus-uuidgen)-$(dbus-uuidgen)-${RANDOM} >> file.txt
+done
+
+tac file.txt > ans.txt
+
+cp file.txt /home/ubuntu/
+
+chown ubuntu:ubuntu /home/ubuntu/file.txt

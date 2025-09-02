@@ -1,0 +1,12 @@
+{
+    "title": "Repair misformatted data file",
+    "labels": ["File", "Linux"],
+    "hints": [
+        "Look into tools like `tr` or `sed` to replace delimiters.",
+        "Remember to redirect the output into the required `result.txt` file."
+    ],
+    "difficulty": 1,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "Copying data.csv"
+cp /home/admin/data.csv /home/ubuntu/
+chmod 777 /home/ubuntu/data.csv

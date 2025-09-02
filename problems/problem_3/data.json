@@ -1,0 +1,9 @@
+{
+    "title": "File permissions",
+    "labels": ["File", "Linux", "Beginner"],
+    "hints": ["Use chmod command", "Run chmod --help for more details"],
+    "difficulty": 1,
+    "external_packages": [],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+
+for i in {1..10}
+do
+    dbus-uuidgen >> /home/admin/data.txt;
+done
+
+cd /home/admin
+tar -cf data.tar.gz data.txt
+
+cp data.tar.gz /home/ubuntu
+rm data.tar.gz
+
+chmod 777 /home/ubuntu/data.tar.gz

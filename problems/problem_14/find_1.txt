@@ -1,0 +1,4 @@
+TIMESTAMP             LEVEL   SERVICE          REQUEST_ID   USER          MESSAGE
+2025-08-19:11:08:05   INFO    auth-service     req-011      john.doe      Password changed successfully
+2025-08-19:11:17:39   ERROR   auth-service     req-027      jane.smith    Password expired
+2025-08-19:11:49:26   INFO    auth-service     req-081      john.doe      Password reset requested
