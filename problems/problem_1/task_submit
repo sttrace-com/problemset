@@ -5,11 +5,7 @@ if [ ! -f '/home/ubuntu/start_server.py' ]; then
     exit 1
 fi
 
-required_sha=$(sha256sum start_servr.py)
-
-file_sha=$(sha256sum /home/ubuntu/start_server.py | awk '{print $1}')
-
-if [ "${file_sha}" != ${required_sha} ]
+if ! diff -q "start_servr.py" "/home/ubuntu/start_server.py" > /dev/null;
 then
     echo "failure"
     exit 1
