@@ -87,6 +87,8 @@ build(){
     [ ! -d "${problem_dir}" ] && { echo "${problem} does not exist, create one with init command first" && exit 1; }
     [ ! -d "${synth_dir}" ] && { echo "${problem} does not exist, create one with synth command first" && exit 1; }
 
+    chmod +x init_task task_submit *.sh
+
     pushd "${synth_dir}"
         echo "Building docker image"
         docker build -t "$problem" .
