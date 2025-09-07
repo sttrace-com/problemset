@@ -1,0 +1,9 @@
+{
+	"title": "Flaky binary handler",
+	"difficulty": 2,
+	"hints": ["Use $? variable to find the exit code of previous command", "Use switch statement to handle multiple exit codes"],
+	"labels": ["Linux", "Bash"],
+	"external_packages": ["build-essential"],
+	"base_image": "ubuntu:22.04",
+	"runner_type": "container"
+}

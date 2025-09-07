@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BINARY="/home/ubuntu/handler"
+
+if [ ! -f "$BINARY" ]; then
+    echo "failure"
+    exit 1
+fi
+
+for i in {1..10}; do
+    "$BINARY"
+    status=$?
+
+    case $status in
+        0)
+            echo "Run $i: "Success"
+            ;;
+        1)
+            echo "Run $i: "General error"
+            ;;
+        127)
+            echo "Run $i: "Command not found"
+            ;;
+        130)
+            echo "Run $i: "Terminated by SIGINT (Ctrl+C)"
+            ;;
+        *)
+            echo "failure"
+            exit 1
+            ;;
+    esac
+done
+
+
+echo "success"

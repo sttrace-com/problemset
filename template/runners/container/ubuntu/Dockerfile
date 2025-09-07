@@ -4,14 +4,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y \
+        openssh-server \
+        sudo \
+        acl \
         {% if external_packages %}
         {% for package in external_packages %}
         {{ package }} \
         {% endfor %}
-        {% else %}
-        openssh-server \
-        sudo \
-        acl \
         {% endif %} && \
     mkdir /var/run/sshd && \
     ssh-keygen -A
