@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "Setting up directory"
+
+rm -rf /home/ubuntu/*
+
+cd /home/admin
+
+[ ! -f "./binary" ] && gcc -o binary main.c
+
+
+cp ./binary /home/ubuntu
+
+chown ubuntu:ubuntu /home/ubuntu/binary
